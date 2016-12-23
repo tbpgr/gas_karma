@@ -15,7 +15,7 @@ function _list() {
   var values = range.getValues();
   var compact = _compact(values);
   var formatted = _u().map(compact, function(e){ return _formattedUser(e[0]) + ":" + _formattedCount(e[1]); });
-  var res = {"response_type": "ephemeral", "text": formatted.join("\n") };
+  var res = {"response_type": "in_channel", "text": formatted.join("\n") };
   return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -25,12 +25,12 @@ function _incrementUsers(users) {
     memo.push(_without_at(incrementedUser[0]) + "の徳 :star2: が" + incrementedUser[1] + "に :up: しました");
     return memo;
   }, []);
-  var res = {"response_type": "ephemeral", "text": messages.join("\n") };
+  var res = {"response_type": "in_channel", "text": messages.join("\n") };
   return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
 }
 
 function _invalidCommand() {
-  var res = {"response_type": "ephemeral", "text": "`/karma list` か `/karma thx name1 name2` を指定してください" };
+  var res = {"response_type": "in_channel", "text": "`/karma list` か `/karma thx name1 name2` を指定してください" };
   return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
 }
 
